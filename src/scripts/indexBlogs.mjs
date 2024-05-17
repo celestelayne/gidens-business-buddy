@@ -49,7 +49,7 @@ fileNames.forEach((fileName) => {
     the Pinecone dashboard at https://app.pinecone.io
 */
 const client = new Pinecone({
-  apiKey: "32d68159-76d2-45cf-ae95-af5b08c482b5"
+  apiKey: process.env.PINECONE_API_KEY
 });
 // await client.init({
 //   apiKey: process.env.PINECONE_API_KEY
