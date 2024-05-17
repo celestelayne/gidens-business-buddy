@@ -4,12 +4,12 @@ import QAModal from "./QAModal";
 import TextToImgModal from "./TextToImgModal";
 import Image from "next/image";
 const examples = [
-  {
-    name: "Text to image",
-    title: "Powered by stable-diffusion on Replicate",
-    imageUrl:
-      "https://tjzk.replicate.delivery/models_models_featured_image/710f5e9f-9561-4e4f-9d1e-614205f62597/stable-diffusion.webp",
-  },
+  // {
+  //   name: "Text to image",
+  //   title: "Powered by stable-diffusion on Replicate",
+  //   imageUrl:
+  //     "https://tjzk.replicate.delivery/models_models_featured_image/710f5e9f-9561-4e4f-9d1e-614205f62597/stable-diffusion.webp",
+  // },
   {
     name: "Q&A on documents",
     title: "Ask questions about an a16z blog",
@@ -19,7 +19,7 @@ const examples = [
 ];
 
 export default function Examples() {
-  const [QAModalOpen, setQAModalOpen] = useState(false);
+  const [QAModalOpen, setQAModalOpen] = useState(false); // this is the one we'll be using
   const [TextToImageModalOpen, setTextToImageModalOpen] = useState(false);
   return (
     <div>

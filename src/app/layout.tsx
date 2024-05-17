@@ -1,12 +1,14 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "AI Getting Started",
-  description: "Help you setup an AI project with ease",
+  title: "Meet Your AI Business Buddy",
+  description: "A powerful tool that helps you navigate the ambiguous journey of starting and growing your business.",
 };
 
 export default function RootLayout({
@@ -17,7 +19,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          <Navbar />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

@@ -1,9 +1,9 @@
 // Major ref: https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/pinecone
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
-import { Document } from "langchain/document";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { Document } from "@langchain/core/documents";
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PineconeStore } from "@langchain/pinecone";
 import fs from "fs";
 import path from "path";
 
@@ -43,12 +43,18 @@ fileNames.forEach((fileName) => {
   });
 });
 
-const client = new PineconeClient();
-await client.init({
-  apiKey: process.env.PINECONE_API_KEY,
-  environment: process.env.PINECONE_ENVIRONMENT,
+/* 
+    Instantiate a new Pinecone client, which will automatically read the
+    env vars: PINECONE_API_KEY and PINECONE_ENVIRONMENT which come from
+    the Pinecone dashboard at https://app.pinecone.io
+*/
+const client = new Pinecone({
+  apiKey: "32d68159-76d2-45cf-ae95-af5b08c482b5"
 });
-const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
+// await client.init({
+//   apiKey: process.env.PINECONE_API_KEY
+// });
+const pineconeIndex = client.Index("ai-getting-started");
 
 await PineconeStore.fromDocuments(
   lanchainDocs,

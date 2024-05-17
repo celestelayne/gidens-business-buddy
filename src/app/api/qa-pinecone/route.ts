@@ -1,40 +1,49 @@
-import { PineconeClient } from "@pinecone-database/pinecone";
-import dotenv from "dotenv";
-import { VectorDBQAChain } from "langchain/chains";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { OpenAI } from "langchain/llms/openai";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { StreamingTextResponse, LangChainStream } from "ai";
+// for LangChain
+import { Pinecone } from "@pinecone-database/pinecone"; // why is this not working?
+import { OpenAI } from "@langchain/openai";
+import { ConversationChain } from "langchain/chains";
 import { CallbackManager } from "langchain/callbacks";
+// for vectorstore and embeddings
+import { OpenAIEmbeddings } from "@langchain/openai";
+import { PineconeStore } from "@langchain/pinecone";
+import { StreamingTextResponse, LangChainStream } from "ai";
 
+import dotenv from "dotenv";
 dotenv.config({ path: `.env.local` });
 
+// fucntion to handle POST request
 export async function POST(request: Request) {
   const { prompt } = await request.json();
-  const client = new PineconeClient();
-  await client.init({
-    apiKey: process.env.PINECONE_API_KEY || "",
-    environment: process.env.PINECONE_ENVIRONMENT || "",
+  /* Instantiate a new Pinecone client, which will automatically read the
+      env vars: PINECONE_API_KEY and PINECONE_ENVIRONMENT which come from
+      the Pinecone dashboard at https://app.pinecone.io
+  */
+  const pinecone = new Pinecone({
+    apiKey: process.env.PINECONE_API_KEY || ""
   });
-  const pineconeIndex = client.Index(process.env.PINECONE_INDEX || "");
 
+  const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX || "");
+
+  // Create vector store from existing Pinecone index, https://app.pinecone.io/
   const vectorStore = await PineconeStore.fromExistingIndex(
     new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
     { pineconeIndex }
   );
 
   const { stream, handlers } = LangChainStream();
+  /* Initialize the LLM to use to answer the question */
   const model = new OpenAI({
     streaming: true,
-    modelName: "gpt-3.5-turbo-16k",
+    modelName: "gpt-3.5-turbo",
     openAIApiKey: process.env.OPENAI_API_KEY,
     callbackManager: CallbackManager.fromHandlers(handlers),
   });
 
-  const chain = VectorDBQAChain.fromLLM(model, vectorStore, {
-    k: 1,
-    returnSourceDocuments: true,
+  // Create Conversation Chain object
+  const chain = new ConversationChain({
+    llm: model
   });
+  chain.call({ memory: vectorStore }).catch(console.error);
   chain.call({ query: prompt }).catch(console.error);
 
   return new StreamingTextResponse(stream);
