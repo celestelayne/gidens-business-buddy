@@ -58,7 +58,8 @@ const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
     useEffect(() => {
         if (messagesContainerRef.current) {
           const element = messagesContainerRef.current;
-          element.scrollTop = element.scrollHeight;
+          console.log(element)
+        //   element.scrollTop = element.scrollHeight;
         }
       }, [messages]);
 

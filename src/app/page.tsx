@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     
-    <main className="flex min-h-screen flex-col justify-between">
+    <main className="flex min-h-screen flex-col">
       
         <h1 className="mt-16 mx-auto max-w-2xl text-center text-5xl font-bold tracking-tight text-white sm:text-6xl">
           Landing Page
