@@ -54,7 +54,7 @@ const client = new Pinecone({
 // await client.init({
 //   apiKey: process.env.PINECONE_API_KEY
 // });
-const pineconeIndex = client.Index("ai-getting-started");
+const pineconeIndex = client.Index("gidens-business-buddy");
 
 await PineconeStore.fromDocuments(
   lanchainDocs,
