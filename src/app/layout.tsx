@@ -1,11 +1,9 @@
 import { ClerkProvider } from "@clerk/nextjs";
-import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import { inter } from "@/app/ui/fonts"; 
 
 // best practice to add to the top level component
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Meet Your AI Business Buddy",
@@ -20,7 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.className} antialiased`}>
           <Navbar />
           {children}
         </body>
