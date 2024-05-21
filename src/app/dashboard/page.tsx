@@ -7,32 +7,12 @@ import PromptBox from "@/components/PromptBox";
 import ResultsWithSources  from "@/components/ResultsWithSources";
 import Profile from "@/components/Profile";
 
-interface IMessage {
-    pngFile: string;
-    text: string;
-    type: string;
-}
-
-interface IMessages {
-    message: any;
-    pngFile: any;
-}
-
-// Define the chat history.
-const initialChatHistory = [
-    { role: "system", content: "Hello!" },
-    { role: "human", content: "Hi!" },
-    { role: "system", content: "How can I help you today?" },
-];
-
 export default function Dashboard() {
 
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
     const [firstMessage, setFirstMessage] = useState(true);
-
-    const [chatHistory, setChatHistory] = useState(initialChatHistory);
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrompt(e.target.value);

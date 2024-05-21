@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 
+// best practice to add to the top level component
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

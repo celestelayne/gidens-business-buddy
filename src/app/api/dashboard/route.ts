@@ -2,16 +2,10 @@ import { NextResponse } from "next/server";
 import { OpenAI } from "@langchain/openai";
 import { BufferMemory } from "langchain/memory";
 import { ConversationChain } from "langchain/chains";
-import { HumanMessage, AIMessage } from "@langchain/core/messages";
 
 let model;
 let memory;
 let chain: any;
-
-// const pastMessages = [
-//     new HumanMessage("My name's Jonas"),
-//     new AIMessage("Nice to meet you, Jonas!"),
-// ];
 
 export async function POST(request: Request, res: NextResponse) {
 

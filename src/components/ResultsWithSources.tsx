@@ -57,11 +57,11 @@ const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
 
     useEffect(() => {
         if (messagesContainerRef.current) {
-          const element = messagesContainerRef.current;
-          console.log(element)
+            const element = messagesContainerRef.current;
+            console.log(element)
         //   element.scrollTop = element.scrollHeight;
         }
-      }, [messages]);
+    }, [messages]);
 
     // before reaching the max number of messages, add justify-wend property which pushes the messages to the bottom
     const maxMsgToScroll = maxMsgs || 5;
@@ -71,7 +71,7 @@ const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
             ref={messagesContainerRef}
             className={`bg-white p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[500px] max-h-[500px] flex flex-col space-y-4 ${
                 messages.length < maxMsgToScroll && "justify-end"
-              }`}>
+            }`}>
                 {messages && messages.map((message, index) => (
                     <MessageItem key={index} message={message} pngFile={pngFile} />
                 ))}

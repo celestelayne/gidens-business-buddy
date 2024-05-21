@@ -1,9 +1,6 @@
-# AI Getting Started
+# /gidens/ Business Buddy
 
-[Live Demo (deployed on fly.io)](https://ai-getting-started.com/)
-
-[Join our community Discord: AI Stack Devs](https://discord.gg/PQUmTBTGmT)
-
+[Live Demo (deployed on fly.io)](https://gidens-business-buddy.fly.dev/)
 
 
 <img width="1305" alt="Screen Shot 2023-06-20 at 1 30 56 PM" src="https://github.com/a16z-infra/ai-getting-started/assets/3489963/bcc762d2-68f5-4c4e-8c49-14602bee4995">
@@ -15,7 +12,6 @@
 - App logic: [Next.js](https://nextjs.org/)
 - VectorDB: [Pinecone](https://www.pinecone.io/) / [Supabase pgvector](https://supabase.com/docs/guides/database/extensions/pgvector)
 - LLM Orchestration: [Langchain.js](https://js.langchain.com/docs/) 
-- Image Model: [Replicate](https://replicate.com/)
 - Text Model: [OpenAI](https://platform.openai.com/docs/models)
 - Text streaming: [ai sdk](https://github.com/vercel-labs/ai)
 - Deployment: [Fly](https://fly.io/)
@@ -58,19 +54,15 @@ b. **OpenAI API key**
 
 Visit https://platform.openai.com/account/api-keys to get your OpenAI API key
 
-c. **Replicate API key**
-
-Visit https://replicate.com/account/api-tokens to get your Replicate API key
-
 > **_NOTE:_**  By default, this template uses Pinecone as vector store, but you can turn on Supabase pgvector easily. This means you only need to fill out either Pinecone API key _or_ Supabase API key. 
 
-d. **Pinecone API key**
+c. **Pinecone API key**
 - Create a Pinecone index by visiting https://app.pinecone.io/ and click on "Create Index"
 - Give it an index name (this will be the environment variable `PINECONE_INDEX`)
 - Fill in Dimension as `1536`
 - Once the index is successfully created, click on "API Keys" on the left side nav and create an API key: copy "Environment" value to `PINECONE_ENVIRONMENT` variable, and "Value" to `PINECONE_API_KEY`
 
-e. **Supabase API key**
+d. **Supabase API key**
 - Create a Supabase instance [here](https://supabase.com/dashboard/projects); then go to Project Settings -> API 
 - `SUPABASE_URL` is the URL value under "Project URL"
 - `SUPABASE_PRIVATE_KEY` is the key starts with `ey` under Project API Keys

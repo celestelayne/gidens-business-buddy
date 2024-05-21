@@ -2,18 +2,6 @@ import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
-// const navigation = [
-//   {
-//     name: "About",
-//     tagline: "Your AI Business Buddy",
-//     href: "https://www.gidens.com/",
-//     current: false,
-//   },
-// ];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function Navbar() {
   const { userId } = auth();
@@ -52,12 +40,6 @@ export default function Navbar() {
                   className="rounded-md bg-gray-800 py-2 px-3 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   Sign In
-                </Link>
-                <Link
-                  href="/sign-up"
-                  className="rounded-md bg-gray-800 py-2 px-3 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  Sign Up
                 </Link>
               </>
             )}

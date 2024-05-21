@@ -13,7 +13,7 @@ const nextConfig = {
       },
 			{
         protocol: "https",
-        hostname: "tjzk.replicate.delivery",
+        hostname: 'img.clerk.com',
         port: "",
         pathname: "**",
       },
