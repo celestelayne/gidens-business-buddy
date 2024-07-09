@@ -6,6 +6,7 @@ import ChatHistory from "@/components/ChatHistory";
 import PromptBox from "@/components/PromptBox";
 import ResultsWithSources  from "@/components/ResultsWithSources";
 import Profile from "@/components/Profile";
+import Sidebar from "@/components/Sidebar";
 
 export default function Dashboard() {
 
@@ -68,7 +69,9 @@ export default function Dashboard() {
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-between">
-            <ThreeColumnLayout 
+            <div className="w-1/4">
+                <Sidebar/>
+            {/* <ThreeColumnLayout 
                 leftChildren={
                     <>
                         <ChatHistory />
@@ -88,7 +91,8 @@ export default function Dashboard() {
                 rightChildren={
                     <Profile />
                 }
-            />
+            /> */}
+            </div>
         </main>
     )
 }
