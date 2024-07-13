@@ -1,10 +1,10 @@
 'use client'
-import React, { useState }  from "react";
+import React, { useState } from "react";
 
 import ThreeColumnLayout from "@/components/ThreeColumnLayout";
 import ChatHistory from "@/components/ChatHistory";
 import PromptBox from "@/components/PromptBox";
-import ResultsWithSources  from "@/components/ResultsWithSources";
+import ResultsWithSources from "@/components/ResultsWithSources";
 import Profile from "@/components/Profile";
 import Sidebar from "@/components/Sidebar";
 
@@ -24,10 +24,10 @@ export default function Dashboard() {
 
         try {
             setMessages(prevMessages => [
-                ...prevMessages, 
-                { 
+                ...prevMessages,
+                {
                     text: prompt,
-                    type: "user", 
+                    type: "user",
                 }
             ])
             const response = await fetch("/api/dashboard", {
@@ -40,7 +40,7 @@ export default function Dashboard() {
                 body: JSON.stringify({ input: prompt, firstMessage })
             })
 
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
@@ -50,13 +50,13 @@ export default function Dashboard() {
             const searchResponse = await response.json();
             // add the bot message to the chat history
             setMessages(prevMessages => [
-                ...prevMessages, 
-                { 
+                ...prevMessages,
+                {
                     text: searchResponse.output.response,
-                    type: "bot", 
+                    type: "bot",
                 }
             ])
-            
+
             console.log({ searchResponse }); // browser response { searchResponse: { input: 'what is my name' } }
             // clear old error messages
             setError("")
@@ -68,9 +68,8 @@ export default function Dashboard() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between">
-            <div className="w-1/4">
-                <Sidebar/>
+        <main className="flex flex-row min-h-screen items-center justify-between">
+            {/* <Sidebar /> */}
             {/* <ThreeColumnLayout 
                 leftChildren={
                     <>
@@ -92,7 +91,6 @@ export default function Dashboard() {
                     <Profile />
                 }
             /> */}
-            </div>
         </main>
     )
 }
