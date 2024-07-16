@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      background:{
+        'gradient-img':"url('/assets/images/Circle.png')",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

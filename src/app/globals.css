@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mallanna&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgba: 12, 16, 33, 1;
+  --background-start-rgba:12, 16, 33, 1;
+  --background-end-rgba:12, 16, 33, 1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgba:12, 16, 33, 1;
+    --background-start-rgba: 12, 16, 33, 1;
+    --background-end-rgba: 12, 16, 33, 1;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: rgb(var(--foreground-rgba));
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--background-end-rgba))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgba));
 }
