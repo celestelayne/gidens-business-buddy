@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
 import { inter } from "@/app/ui/fonts"; 
+import Image from "next/image";
 
 // best practice to add to the top level component
 import "./globals.css";
