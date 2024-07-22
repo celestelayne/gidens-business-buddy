@@ -1,5 +1,60 @@
 # /gidens/ Business Buddy
 
+A Next/React application.
+
+## Dependencies
+
+This application requires teh following dependencies:
+
+| Dependency | Version    |
+| ---------- | ---------- |
+| react      | ^18.3.1    |
+| node       | >=18.17.0   |
+
+## Project Pattern
+
+This application has a defined directory hierarchy. Below is the explanation of each directory's purpose:
+
+- `/public`
+  - contains all the static assets for the application like images
+- `/scripts`
+  - contains seeding scripts that can be used to populate the database
+- `/components`
+  - contains components like ChatHistory, NavBar and SideNav
+- `src/app` 
+  - contains all the routes, components, and logic for your application
+- `src/app/api` 
+  - contains routes
+- `src/app/lib` 
+  - contains functions used in the application like data fetching
+- `src/app/ui` 
+  - contains all the UI components for the application like Cards, Buttons, Forms etc
+- `/app/lib/definitions.ts` 
+  - this is where we will manually define the types that will be returned from the database.
+
+## Deployment Process
+
+### Environment Variables
+
+Steps to add an Environment Variable
+
+```js
+const nextConfig = {
+  env: {
+    // Add environment variables here
+  },
+}
+```
+
+1. Add key and value to the `env.local` file
+2. Add key and value to the `next.config.js` file under `env`
+
+## Miscellaneous
+
+## Adding Icons
+
+===
+
 [Live Demo (deployed on fly.io)](https://gidens-business-buddy.fly.dev/)
 
 
@@ -103,28 +158,3 @@ Now you are ready to test out the app locally! To do this, simply run `npm run d
 #### Other deployment options
 - [Netlify](https://www.netlify.com/)
 - [Vercel](https://vercel.com/)
-
-
-## How to contribute to this repo
-
-### Code contribution workflow
-You can fork this repo, make changes, and create a PR. Add **@ykhli or @timqian** as reviewers. 
-
-If you are new to contributing on github, here is a step-by-step guide: 
-
-1. Clcik on `Fork` on the top right of this page
-2. Work on your change and push it to your forked repo. Now when you navigate to the forked repo's UI, you should see something like the following:
-<img width="904" alt="pr-preview" src="https://github.com/a16z-infra/ai-getting-started/assets/3489963/631e5f45-39ec-4b54-b9d1-b963e279dcc6">
-
-
-3. Click on "Contribute" -> "Open Pull Request".
-4. Once you have a PR, you can add reviewers.
-
-### Other contributions
-Feel free to open feature requests, bug reports etc under Issues.
-
-## Refs
-- https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/pinecone
-- https://js.langchain.com/docs/modules/models/llms/integrations#replicate
-- https://js.langchain.com/docs/modules/chains/index_related_chains/retrieval_qa
-
