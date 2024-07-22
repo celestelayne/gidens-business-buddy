@@ -1,6 +1,17 @@
 import React from "react";
 import { sourceCodePro } from "../styles/fonts";
 
+interface PromptBox {
+    prompt: string;
+    handlePromptChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
+    placeHolderText?: string;
+    buttonText?: string;
+    error?: string;
+    disableButton?: boolean;
+
+}
+
 const PromptBox = ({
     prompt,
     handlePromptChange,
@@ -29,8 +40,8 @@ const PromptBox = ({
                     value={prompt}
                     onChange={handlePromptChange}
                     onKeyDown={handleKeyDown}
-                    placeholder={placeHolderText || "Enter your prompt"}
-                    className="w-full mr-4 py-2 px-4 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded shadow"
+                    placeholder={placeHolderText || "Ex. What should I focus on now that I've launched my business?"}
+                    className="w-full h-14 mr-4 py-2 px-4 bg-white text-gray-900 placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
                 />
 
                 {!disableButton && (
