@@ -32,7 +32,7 @@ const AdditionalUpdate = () => {
                 firstName: data.firstName,
                 lastName: data.lastName,
             })
-            router.push('/dashboard')
+            router.push('/chat')
         } catch (error) {
             console.log(error)
         }
