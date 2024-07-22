@@ -4,7 +4,7 @@ A Next/React application.
 
 ## Dependencies
 
-This application requires teh following dependencies:
+This application requires the following dependencies:
 
 | Dependency | Version    |
 | ---------- | ---------- |
