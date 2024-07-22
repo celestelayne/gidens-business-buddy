@@ -67,7 +67,7 @@ export default function Chat() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col">
+        <main className="flex min-h-screen flex-col p-8">
             <ThreeColumnLayout 
                 leftChildren={
                     <>
