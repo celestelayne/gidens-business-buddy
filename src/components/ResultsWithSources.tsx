@@ -69,7 +69,7 @@ const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
     return (
         <div 
             ref={messagesContainerRef}
-            className={`bg-white p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[500px] max-h-[500px] flex flex-col space-y-4 ${
+            className={`bg-white text-regal-blue p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[500px] max-h-[500px] flex flex-col space-y-4 ${
                 messages.length < maxMsgToScroll && "justify-end"
             }`}>
                 {messages && messages.map((message, index) => (
