@@ -1,5 +1,6 @@
-import React from "react";
+// import React from "react";
 import { sourceCodePro } from "../styles/fonts";
+import { Icons } from "../components/Icons";
 
 interface PromptBox {
     prompt: string;
@@ -41,15 +42,15 @@ const PromptBox = ({
                     onChange={handlePromptChange}
                     onKeyDown={handleKeyDown}
                     placeholder={placeHolderText || "Ex. What should I focus on now that I've launched my business?"}
-                    className="w-full h-14 mr-4 py-2 px-4 bg-white text-gray-900 placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
+                    className="w-full h-14 mr-4 py-2 px-4 bg-white text-regal-blue placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
                 />
 
                 {!disableButton && (
                     <button
                         onClick={handleSubmit} // if someone clicks the button, it also activates the handle submit function 
-                        className={`py-6 px-6 bg-white shadow font-semibold rounded-full hover:shadow-xl transition-colors duration-200 uppercase ${sourceCodePro.className}`}
+                        className={`py-2 px-2 shadow font-semibold rounded-full hover:shadow-xl transition-colors duration-200 uppercase ${sourceCodePro.className}`}
                     >
-                        {buttonText || "Enter"}
+                        {/* {buttonText || "Enter"} */} <Icons.send size={36} />
                     </button>
                 )}
             </div>
