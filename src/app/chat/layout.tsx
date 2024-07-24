@@ -12,7 +12,7 @@ export default function Layout({
                     <SideNav />
                 </div>
                 {/* need to fix the paddng and margin on this bc its scrolling */}
-                <div className="flex-grow p-6 md:overflow-y-auto">{children}</div>
+                <div className="flex-grow md:p-12 md:overflow-y-auto">{children}</div>
             </main>
         </>
     );
