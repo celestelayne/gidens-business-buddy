@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     colors: {
       'regal-blue': '#0C1021',
-      'white': '#F2F2F2'
+      'white': '#F2F2F2',
+      'grey': "#A8A8A8",
+      'yellow': "#FF9D35",
+      'light-blue': '#A5AFDA'
     },
     fontFamily: {
       sans: ['Mona Sans', 'sans-serif'],
