@@ -7,9 +7,9 @@ export default function Navbar() {
   const { userId } = auth();
   
   return (
-    <div className="bg-gray-900 w-full fixed top-0 z-10">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
+    <div className="w-full fixed top-0 z-10">
+      <div className="mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="bg-regal-blue relative flex h-32 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <div className="flex flex-shrink-0 items-center">
               <Image
