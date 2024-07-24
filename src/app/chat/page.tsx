@@ -54,7 +54,7 @@ export default function Page() {
                 }
             ])
             
-            console.log({ searchResponse }); // browser response { searchResponse: { input: 'what is my name' } }
+            console.log('search response', { searchResponse }); // browser response { searchResponse: { input: 'what is my name' } }
             // clear old error messages
             setError("")
 
