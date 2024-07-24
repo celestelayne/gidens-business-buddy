@@ -65,7 +65,7 @@ export default function Page() {
     }
     
     return(
-        <main className="flex min-h-screen flex-col p-8">
+        <main className="flex flex-col">
             <TwoColumnLayout 
                 leftChildren={
                     <>
