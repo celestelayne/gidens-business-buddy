@@ -7,8 +7,8 @@ export default function Navbar() {
   const { userId } = auth();
   
   return (
-    <div className="bg-gray-900 w-full fixed top-0 z-10">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div className="border-b-2 border-opacity-50 border-blue-300 w-full fixed top-2 z-10">
+      <div className="mx-3 max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <div className="flex flex-shrink-0 items-center">
@@ -24,22 +24,28 @@ export default function Navbar() {
                 width={0}
                 height={0}
                 sizes="100vw"
-                className="hidden h-8 w-auto lg:block rounded-lg"
+                className="hidden ml-3.5 h-8 w-auto lg:block rounded-lg"
                 src="/gidens-fullname-logo-02.png"
                 alt="gidens"
               />
             </div>
-          </div>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          </div> 
+          <div className="absolute inset-y-0 flex justify-between translate-x-12 sm:static sm:inset-auto sm:ml-6 sm:pr-0 ml-auto">
             {userId ? (
               <UserButton afterSignOutUrl="/" />
             ) : (
               <>
                 <Link
                   href="/sign-in"
-                  className="rounded-md bg-gray-800 py-2 px-3 text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  Sign In
+                  className=" rounded bg-orange-400 shadow-md py-2 px-4 text-sm font-medium text-white hover:bg-orange-300 translate-x-9">
+                  Log In
+                </Link>
+
+
+                <Link
+                  href="/sign-in"
+                  className="rounded bg-white shadow-md py-2 px-3 text-sm font-medium text-black hover:bg-gray-300 translate-x-12">
+                  Sign up
                 </Link>
               </>
             )}
@@ -49,3 +55,4 @@ export default function Navbar() {
     </div>
   );
 }
+//When making the website smaller (minimizing the screen by dragging the edges) the buttons do not adjust to fit.
