@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${monaSans.className} antialiased bg-regal-blue text-white`}>
+        <body className={`${monaSans.className} antialiased min-h-screen bg-regal-blue text-white`}>
           <Navbar />
           {children}
         </body>
