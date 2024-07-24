@@ -2,11 +2,9 @@ import React from "react";
 
 const ChatHistory = () => {
 
-    // console.log(history)
-
     return(
         <>
-            <h1>Chat History</h1>
+            <h1>History</h1>
         </>
     )
 };
