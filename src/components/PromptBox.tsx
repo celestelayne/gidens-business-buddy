@@ -48,9 +48,9 @@ const PromptBox = ({
                 {!disableButton && (
                     <button
                         onClick={handleSubmit} // if someone clicks the button, it also activates the handle submit function 
-                        className={`py-2 px-2 shadow font-semibold rounded-full hover:shadow-xl transition-colors duration-200 uppercase ${sourceCodePro.className}`}
+                        className={`py-2 px-2 ${sourceCodePro.className}`}
                     >
-                        {/* {buttonText || "Enter"} */} <Icons.send size={36} />
+                        <Icons.send size={36} />
                     </button>
                 )}
             </div>
