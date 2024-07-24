@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     
-    <main className="flex min-h-screen flex-col justify-center items-center ">
+    <main className="flex min-h-screen flex-col justify-center items-center">
         <p className="after:content-['\01F44B'] ">Hey, {fullname}! </p>
         <h1 className="mx-auto max-w-2xl text-center text-5xl font-bold tracking-tight text-white sm:text-6xl">
           Meet your AI <br/> Business Buddy
