@@ -1,18 +1,16 @@
 'use client'
 import React, { useState }  from "react";
 
-import ThreeColumnLayout from "@/components/ThreeColumnLayout";
+import TwoColumnLayout from "@/components/TwoColumnLayout";
 import ChatHistory from "@/components/ChatHistory";
 import PromptBox from "@/components/PromptBox";
 import ResultsWithSources  from "@/components/ResultsWithSources";
-import SideNav from "@/components/SideNav";
 
-export default function Chat() {
+export default function Page() {
 
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
     const [messages, setMessages] = useState([]);
-    // const [firstMessage, setFirstMessage] = useState(true);
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrompt(e.target.value);
@@ -65,22 +63,19 @@ export default function Chat() {
             setError(error);
         }
     }
-
-    return (
+    
+    return(
         <main className="flex min-h-screen flex-col p-8">
-            <ThreeColumnLayout 
+            <TwoColumnLayout 
                 leftChildren={
-                    <>
-                        <SideNav />
-                    </>
-                }
-                middleChildren={
                     <>
                         <ChatHistory />
                     </>
                 } 
                 rightChildren={
                     <>
+                        <h1 className="pb-2 text-light-blue">General</h1>
+                        <h1 className="pb-6 text-4xl text-light-blue">What would you like to know about your business?</h1>
                         <ResultsWithSources messages={messages} pngFile="brain" maxMsgs={5}/>
                         <PromptBox
                             prompt={prompt}
