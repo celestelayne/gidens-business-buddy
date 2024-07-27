@@ -1,13 +1,13 @@
-// import React from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import { sourceCodePro } from "../styles/fonts";
 import { Icons } from "../components/Icons";
 
 interface PromptBox {
     prompt: string;
-    handlePromptChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handlePromptChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
     handleSubmit: () => void;
     placeHolderText?: string;
-    buttonText?: string;
     error?: string;
     disableButton?: boolean;
 
@@ -18,12 +18,11 @@ const PromptBox = ({
     handlePromptChange,
     handleSubmit,
     placeHolderText,
-    buttonText,
     error,
     disableButton,
 }: any) => {
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             /* 
                 passed handle submit from the prompt box 
