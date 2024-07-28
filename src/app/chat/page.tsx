@@ -6,7 +6,7 @@ import ChatHistory from "@/components/ChatHistory";
 import PromptBox from "@/components/PromptBox";
 import ResultsWithSources  from "@/components/ResultsWithSources";
 
-export default function Page() {
+export default function Chat() {
 
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
@@ -43,7 +43,6 @@ export default function Page() {
 
             setPrompt("");
             // set first message to false after first message is sent so as not to reinitialize the chain
-            // setFirstMessage(false);
             const searchResponse = await response.json();
             // add the bot message to the chat history
             setMessages(prevMessages => [
@@ -71,11 +70,9 @@ export default function Page() {
                     <>
                         <ChatHistory />
                     </>
-                } 
+                }
                 rightChildren={
                     <>
-                        <h1 className="pb-2 text-light-blue">General</h1>
-                        <h1 className="pb-6 text-4xl text-light-blue">What would you like to know about your business?</h1>
                         <ResultsWithSources messages={messages} pngFile="brain" maxMsgs={5}/>
                         <PromptBox
                             prompt={prompt}
