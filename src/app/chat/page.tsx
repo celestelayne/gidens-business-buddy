@@ -48,7 +48,7 @@ export default function Chat() {
             setMessages(prevMessages => [
                 ...prevMessages, 
                 { 
-                    text: searchResponse.output.response,
+                    text: searchResponse.output.answer,
                     type: "bot", 
                 }
             ])
