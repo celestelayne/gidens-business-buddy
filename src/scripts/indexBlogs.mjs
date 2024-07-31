@@ -1,65 +1,63 @@
 // Major ref: https://js.langchain.com/docs/modules/indexes/vector_stores/integrations/pinecone
 import { Pinecone } from "@pinecone-database/pinecone";
-import dotenv from "dotenv";
-import { Document } from "@langchain/core/documents";
+import { DirectoryLoader } from "langchain/document_loaders/fs/directory";
+import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+// import { Document } from "@langchain/core/documents";
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { PineconeStore } from "@langchain/pinecone";
+import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
+
 import fs from "fs";
 import path from "path";
 
+import dotenv from "dotenv";
 dotenv.config({ path: `.env.local` });
 
 const MAX_TOKENS = 8191;
 
-const fileNames = fs.readdirSync("blogs");
-
-// Helper function to chunk a string into smaller parts
-const chunkString = (str, length) => {
-  const size = Math.ceil(str.length / length);
-  const r = Array(size);
-  let offset = 0;
-
-  for (let i = 0; i < size; i++) {
-    r[i] = str.substr(offset, length);
-    offset += length;
-  }
-
-  return r;
-};
-
-const lanchainDocs = [];
-
-fileNames.forEach((fileName) => {
-  const filePath = path.join("blogs", fileName);
-  const fileContent = fs.readFileSync(filePath, "utf8");
-
-  const chunks = chunkString(fileContent, MAX_TOKENS);
+  // Form the local path to the PDFs documents
+  const docsPath = path.resolve(process.cwd(), 'blogs/')
   
-  chunks.forEach((chunk, index) => {
-    lanchainDocs.push(new Document({
-      metadata: { fileName, chunkIndex: index },
-      pageContent: chunk,
-    }));
+  const loader = new DirectoryLoader(docsPath, {
+    '.pdf': (filePath) => new PDFLoader(filePath),
   });
-});
+  
+  // Load all PDFs within the specified directory
+  console.log("Loading docs...");
+  const docs = await loader.load();
+  console.log("Docs loaded.");
+  
+  console.log(docs.length);
+  console.log(docs[0].pageContent.slice(0, 100));
+  console.log(docs[0].metadata);
 
-/* 
+  // Split text into chunks
+  const textSplitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 1000,
+    chunkOverlap: 200,
+  });
+  const splitDocs = await textSplitter.splitDocuments(docs);
+  
+  console.log('how many split documents: ', splitDocs.length ); // 24
+
+  /* 
     Instantiate a new Pinecone client, which will automatically read the
     env vars: PINECONE_API_KEY and PINECONE_ENVIRONMENT which come from
     the Pinecone dashboard at https://app.pinecone.io
-*/
-const client = new Pinecone({
-  apiKey: process.env.PINECONE_API_KEY
-});
-// await client.init({
-//   apiKey: process.env.PINECONE_API_KEY
-// });
-const pineconeIndex = client.Index("gidens-business-buddy");
+  */
+  const client = new Pinecone({
+    apiKey: process.env.PINECONE_API_KEY
+  });
+  const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
+  console.log('PINECONE_INDEX =====', { pineconeIndex });
 
-await PineconeStore.fromDocuments(
-  lanchainDocs,
-  new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
-  {
-    pineconeIndex,
-  }
-);
+  // create a pinecone store using the splitted docs and the pinecone index
+  await PineconeStore.fromDocuments(
+    splitDocs,
+    new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
+    {
+      pineconeIndex,
+      namespace: "gidens-business-buddy",
+      maxConcurrency: 5, // Maximum number of batch requests to allow at once. Each batch is 1000 vectors.
+    }
+  );
