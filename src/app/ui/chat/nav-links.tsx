@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 const links = [
-    { name: 'Home', href: '/chat' },
+    { name: 'Chat', href: '/chat' },
     { name: 'People', href: '/chat/people' },
     { name: 'News', href: '/chat/news' },
     { name: 'Activity', href: '/chat/activity' },
-    { name: 'Profile', href: '/chat/user-profile' },
+    { name: 'Profile', href: '/user-profile' },
 ]
 
 export default function NavLinks() {
