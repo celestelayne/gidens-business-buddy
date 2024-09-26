@@ -3,8 +3,6 @@ import { sourceCodePro } from "../styles/fonts";
 import { Icons } from "../components/Icons";
 
 import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
 
 interface PromptBox {
     prompt: string;
@@ -48,13 +46,6 @@ const PromptBox = ({
                     onChange={handlePromptChange}
                     onKeyDown={handleKeyDown}
                     placeholder={placeHolderText || "e.g. Ask me something..."}
-                    endAdornment={
-                        <InputAdornment position="end">
-                        <IconButton aria-label="send icon" onClick={handleSubmit}>
-                            {/* <SendIcon /> */}
-                        </IconButton>
-                        </InputAdornment>
-                    }
                 />
                 {!disableButton && (
                     <button
