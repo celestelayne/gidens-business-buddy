@@ -2,6 +2,10 @@ import React, { ChangeEvent, KeyboardEvent } from "react";
 import { sourceCodePro } from "../styles/fonts";
 import { Icons } from "../components/Icons";
 
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+
 interface PromptBox {
     prompt: string;
     handlePromptChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -35,7 +39,24 @@ const PromptBox = ({
     return(
         <>
             <div className="flex items-center mb-4">
-                <input
+            <OutlinedInput
+                sx={{ borderRadius: '2rem', width: '100%' }}
+                id="standard-adornment"
+                autoFocus
+                type="text"
+                value={prompt}
+                onChange={handlePromptChange}
+                onKeyDown={handleKeyDown}
+                placeholder={placeHolderText || "e.g. Ask me something..."}
+                endAdornment={
+                    <InputAdornment position="end">
+                    <IconButton aria-label="send icon" onClick={handleSubmit}>
+                        {/* <SendIcon /> */}
+                    </IconButton>
+                    </InputAdornment>
+                }
+            />
+                {/* <input
                     autoFocus
                     type="text"
                     value={prompt}
@@ -43,7 +64,7 @@ const PromptBox = ({
                     onKeyDown={handleKeyDown}
                     placeholder={placeHolderText || "e.g. Ask me something..."}
                     className="w-full h-14 mr-4 py-2 px-4 bg-white text-regal-blue placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
-                />
+                /> */}
 
                 {!disableButton && (
                     <button
