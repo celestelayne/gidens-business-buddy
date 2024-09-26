@@ -2,7 +2,7 @@
 import { Pinecone } from "@pinecone-database/pinecone"; // why is this not working?
 import { OpenAI } from "@langchain/openai";
 import { ConversationChain } from "langchain/chains";
-import { CallbackManager } from "langchain/callbacks";
+import { BaseCallbackHandler } from "@langchain/core/callbacks/base";
 // for vectorstore and embeddings
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { PineconeStore } from "@langchain/pinecone";
@@ -14,6 +14,8 @@ dotenv.config({ path: `.env.local` });
 // fucntion to handle POST request
 export async function POST(request: Request) {
   const { prompt } = await request.json();
+
+  console.log(prompt)
   /* Instantiate a new Pinecone client, which will automatically read the
       env vars: PINECONE_API_KEY and PINECONE_ENVIRONMENT which come from
       the Pinecone dashboard at https://app.pinecone.io
@@ -31,20 +33,24 @@ export async function POST(request: Request) {
   );
 
   const { stream, handlers } = LangChainStream();
+
+  console.log("stream", stream);
+  console.log("handlers", handlers);
+
   /* Initialize the LLM to use to answer the question */
   const model = new OpenAI({
     streaming: true,
     modelName: "gpt-3.5-turbo",
     openAIApiKey: process.env.OPENAI_API_KEY,
-    callbackManager: CallbackManager.fromHandlers(handlers),
+    callbacks: [BaseCallbackHandler.fromMethods(handlers)],
   });
 
   // Create Conversation Chain object
   const chain = new ConversationChain({
-    llm: model
+    llm: model,
   });
-  chain.call({ memory: vectorStore }).catch(console.error);
-  chain.call({ query: prompt }).catch(console.error);
+  chain.invoke({ memory: vectorStore }).catch(console.error);
+  chain.invoke({ input: prompt }).catch(console.error);
 
   return new StreamingTextResponse(stream);
 }

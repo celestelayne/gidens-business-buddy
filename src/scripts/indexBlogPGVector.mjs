@@ -42,8 +42,8 @@ const auth = {
 };
 
 const client = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_PRIVATE_KEY,
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_PRIVATE_KEY,
   { auth }
 );
 
