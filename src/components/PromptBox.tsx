@@ -12,7 +12,6 @@ interface PromptBox {
     placeHolderText?: string;
     error?: string;
     disableButton?: boolean;
-
 }
 
 const PromptBox = ({
