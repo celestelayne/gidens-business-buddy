@@ -2,9 +2,6 @@
 'use client'
 import React, { useState }  from "react";
 
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
-
 import PromptBox from "@/components/PromptBox";
 import ResultsWithSources  from "@/components/ResultsWithSources";
 
@@ -15,6 +12,7 @@ export default function DemoDay() {
     const [messages, setMessages] = useState<any[]>([
         {
             type: 'bot',
+            // text: 'Hey! What is your name and favorite food?',
             text: 'Hey Kalani, Blue Startups is hosting an event on September 26th, just 1 mile from your spot. Would you like more information?',
         }
     ]);
@@ -81,38 +79,14 @@ export default function DemoDay() {
     }
 
     return(
-        <>
-            <Grid
-                display="flex"
-                size={{ xs: 12, md: 9 }}
-                sx={{
-                boxShadow: 0,
-                height: { xs: '100vh', md: '100vh' },
-                padding: { xs: '1rem 0.5rem', md: '1rem' },
-                overflow: 'hidden',
-            }}>
-                <Box
-                    component="section"
-                    sx={() => ({
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'start',
-                        gap: 0,
-                        width: '100%',
-                    })}>
-                    <Box sx={{ overflow: 'scroll' }}>
-                        <ResultsWithSources messages={messages} pngFile="brain" maxMsgs={5}/>
-                    </Box>
-                    <Box sx={{ padding: { xs: '0', md: '1rem' } }}>
-                        <PromptBox
-                            prompt={prompt}
-                            handleSubmit={handleSubmitPrompt}
-                            handlePromptChange={handlePromptChange}
-                            error={error}
-                        />
-                    </Box>
-                </Box>
-            </Grid>
-        </>
+        <main>
+            <ResultsWithSources messages={messages} pngFile="brain" maxMsgs={5}/>
+            <PromptBox
+                prompt={prompt}
+                handleSubmit={handleSubmitPrompt}
+                handlePromptChange={handlePromptChange}
+                error={error}
+            />
+        </main>
     )
 }

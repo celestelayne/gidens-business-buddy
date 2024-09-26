@@ -1,7 +1,6 @@
-import Link from "next/link";
-
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
+import Link from "next/link";
 
 export default async function Home() {
 
@@ -31,7 +30,7 @@ export default async function Home() {
         <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
           <SignedIn>
             <Link
-              href="/demo-day"
+              href="/chat"
               className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
             >
               Chat
