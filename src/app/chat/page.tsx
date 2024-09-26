@@ -1,5 +1,7 @@
 'use client'
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
+import { useSession, useUser } from '@clerk/nextjs';
+import { createClient } from '@supabase/supabase-js';
 
 import TwoColumnLayout from "@/components/TwoColumnLayout";
 import ChatHistory from "@/components/ChatHistory";
@@ -8,25 +10,90 @@ import ResultsWithSources  from "@/components/ResultsWithSources";
 
 export default function Chat() {
 
+    // set state
+    const [messages, setMessages] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
-    const [messages, setMessages] = useState([]);
+
+    // The `useUser()` hook will be used to ensure that Clerk has loaded data about the logged in user
+    const { user } = useUser();
+    console.log(user)
+
+    // The `useSession()` hook will be used to get the Clerk session object
+    const { session } = useSession();
+
+    // Create a custom supabase client that injects the Clerk Supabase token into the request headers
+    const createClerkSupabaseClient = () => {
+        return createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL!,
+            process.env.NEXT_PUBLIC_SUPABASE_KEY!, 
+            {
+                global: {
+                    // Get the custom Supabase token from Clerk
+                    fetch: async (url, options = {}) => {
+                        const clerkToken = await session?.getToken({
+                        template: 'supabase',
+                        });
+            
+                        // Insert the Clerk Supabase token into the headers
+                        const headers = new Headers(options?.headers);
+                        headers.set('Authorization', `Bearer ${clerkToken}`);
+            
+                        // Now call the default fetch
+                        return fetch(url, {
+                        ...options,
+                        headers,
+                        });
+                    },
+                },
+            }
+        );
+    }
+
+    // Create a `client` object for accessing Supabase data using the Clerk token
+    // const client = createClerkSupabaseClient();
+
+    
+
+
+    // This `useEffect` will wait for the User object to be loaded before requesting the messages for the logged in user
+    // useEffect(() => {
+    //     if (!user) return;
+    //     // fetch messages from Supabase
+    //     async function loadMessages() {
+    //         setLoading(true);
+    //         const { data, error } = await client.from('messages').select();
+    //         if (!error) setMessages(data);
+    //         setLoading(false);
+    //     }
+    //     loadMessages();
+    // }, [user])
+
+
 
     const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrompt(e.target.value);
     }
 
     const handleSubmitPrompt = async () => {
-        console.log("Prompt submitted: ", prompt);
 
+        console.log("Prompt submitted: ", prompt);
+        
         try {
-            setMessages(prevMessages => [
-                ...prevMessages, 
-                { 
-                    text: prompt,
-                    type: "user", 
-                }
-            ])
+
+            setMessages([...messages, { text: prompt, type: "user" }]);
+            
+            // setMessages(prevMessages => [
+            //     ...prevMessages, 
+            //     { 
+            //         text: prompt,
+            //         type: "user", 
+            //     }
+            // ])
+
+            console.log("Send to OpenAI: ", messages);
+
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: {
@@ -48,19 +115,23 @@ export default function Chat() {
             setMessages(prevMessages => [
                 ...prevMessages, 
                 { 
-                    text: searchResponse.output.answer,
+                    text: searchResponse.output,
                     type: "bot", 
                 }
             ])
+
+            console.log("Response from OpenAI: ", messages);
             
             console.log('search response', { searchResponse }); // browser response { searchResponse: { input: 'what is my name' } }
             // clear old error messages
             setError("")
-
+            
         } catch (error) {
             console.error(error);
             setError(error);
         }
+
+        setLoading(false);
     }
     
     return(
@@ -68,7 +139,14 @@ export default function Chat() {
             <TwoColumnLayout 
                 leftChildren={
                     <>
-                        <ChatHistory />
+                        {loading && <p>Loading...</p>}
+
+                        {!loading &&
+                            messages.length > 0 &&
+                            <ChatHistory messages={messages}/>
+                        }
+
+                        {!loading && messages.length === 0 && <p>No messages found for {user.firstName}</p>}
                     </>
                 }
                 rightChildren={
