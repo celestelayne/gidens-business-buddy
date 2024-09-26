@@ -1,8 +1,8 @@
 import { 
-  SignInButton, 
-  SignedIn,
-  SignedOut, 
   UserButton, 
+  SignInButton, 
+  SignedOut, 
+  SignedIn
 } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
