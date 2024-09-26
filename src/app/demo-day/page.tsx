@@ -1,3 +1,4 @@
+// aloows us to import useState in NextJS
 'use client'
 import React, { useState }  from "react";
 
@@ -22,6 +23,8 @@ export default function DemoDay() {
     }
 
     const handleSubmitPrompt = async () => {
+
+        console.log("Sending prompt: ", prompt);
         
         try {
 
