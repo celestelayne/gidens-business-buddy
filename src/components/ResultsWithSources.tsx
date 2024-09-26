@@ -1,51 +1,50 @@
 import React, { useRef, useEffect, useState } from "react";
-import Image from "next/image";
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
 
 const MessageItem = ({ message, pngFile }) => {
 
-    const [showSources, setShowSources] = useState(false);
-
     const userImage = `/assets/images/green-square.png`;
-    const botImage = `/assets/images/${pngFile}.png`;
+    const botImage = `/assets/images/gidens-g-logo.svg`;
+
+    const isHuman = message.type === 'user';
+    const messageAlignment = isHuman ? 'flex-end' : 'flex-start';
+
+    const gidensBlue = '#51C0E2';
 
     return(
         <>
-            <Image
-                src={message.type === "user" ? userImage : botImage}
-                alt={`${message.type}'s profile image`}
-                width={32}
-                height={32}
-                className="rounded"
-            />
-            <span
-                className={message.type === "user" ? "user" : "bot"}
-                style={{ maxWidth: "90%" }}
-            >
-                {message.text}
-            </span>
-            {message.sourceDocuments && (
-                <div className="mb-6">
-                    <button
-                        className="text-gray-600 text-sm font-bold"
-                        onClick={() => setShowSources(!showSources)}
-                    >
-                        Source Documents {showSources ? "(Hide)" : "(Show)"}
-                    </button>
-                    {showSources && message.sourceDocuments.map((document, docIndex) => (
-                        <div key={docIndex}>
-                            <h3 className="text-gray-600 text-sm font-bold">
-                                Source {docIndex + 1}:
-                            </h3>
-                            <p className="text-gray-800 text-sm mt-2">
-                                {document.pageContent}
-                            </p>
-                            <pre className="text-xs text-gray-500 mt-2">
-                                {JSON.stringify(document.metadata, null, 2)}
-                            </pre>
-                        </div>
-                    ))}
-                </div>
-            )}
+            <ListItem sx={{ justifyContent: messageAlignment }}>
+                {!isHuman && (
+                    <ListItemAvatar>
+                        <Avatar
+                            src={message.type === "user" ? userImage : botImage}
+                            alt={`${message.type}'s profile image`}
+                            sx={{ 
+                                width: 32, 
+                                height: 32, 
+                                border: `1px solid ${gidensBlue}` 
+                            }}
+                        />
+                    </ListItemAvatar>
+                )}
+
+                <ListItemText
+                    primary={message.content}
+                    sx={{
+                        background: isHuman ? '#fff' : '#E9EFF1',
+                        border: isHuman ? `1px solid ${gidensBlue}` : `none`,
+                        borderRadius: '1rem',
+                        color: isHuman ? gidensBlue : '#000',
+                        display: 'inline-flex',
+                        flex: '0 1 auto',
+                        padding: '0.5rem 1rem',
+                }}>
+                    {message.text}
+                </ListItemText>
+            </ListItem>
         </>
     )
 }
