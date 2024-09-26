@@ -1,8 +1,8 @@
 import { 
-  SignInButton, 
-  SignedIn,
-  SignedOut, 
   UserButton, 
+  SignInButton, 
+  SignedOut, 
+  SignedIn
 } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,6 @@ export default function Navbar() {
   return (
     <div className="w-full fixed top-0 z-10">
       <div className="mx-auto px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-32 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <Link href="/">
               <div className="flex flex-shrink-0 items-center">

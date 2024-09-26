@@ -1,18 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import Image from "next/image";
 
 const MessageItem = ({ message, pngFile }) => {
 
+    const [showSources, setShowSources] = useState(false);
+
     const userImage = `/assets/images/green-square.png`;
-    const botImage = `/assets/images/gidens-g-logo.svg`;
-
-    const isHuman = message.type === 'user';
-    const messageAlignment = isHuman ? 'flex-end' : 'flex-start';
-
-    const gidensBlue = '#51C0E2';
+    const botImage = `/assets/images/${pngFile}.png`;
 
     return(
         <>
