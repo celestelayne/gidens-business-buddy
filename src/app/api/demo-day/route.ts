@@ -8,8 +8,14 @@ import {
     ChatPromptTemplate,
     MessagesPlaceholder,
 } from "@langchain/core/prompts";
-// import { StringOutputParser } from "@langchain/core/output_parsers";
 import { BufferMemory } from "langchain/memory";
+
+// You can set the project name for a specific tracer instance:
+import { LangChainTracer } from "@langchain/core/tracers/tracer_langchain";
+
+const tracer = new LangChainTracer({ 
+    projectName: "pr-memorable-campaign-88" 
+});
 
 /*
     1. Basic Multi-turn Conversation with Memory (No RAG)
@@ -26,7 +32,7 @@ export async function POST(req: NextRequest) {
         const prompt = ChatPromptTemplate.fromMessages([
             [
                 "system",
-                `You are a helpful chatbot assistant who asks the user questions and stores the results for further use. 
+                `You are a proactive assistant who guides the conversation by asking the user questions about applying for a vendors license. 
                 Limit the answer to one brief sentence at a time. 
                 Begin by alerting the user who is a small business owner in the food service industry to an incoming notification about an upcoming event at Blue Startups called Demo Day on September 26th. 
                 Kalani offers catering services and a food truck. 
@@ -66,12 +72,16 @@ export async function POST(req: NextRequest) {
 
         console.log('input  ', input);
 
-        const response = await chain.invoke({
-            input: input,
-        });
+        const response = await chain.invoke(
+            {
+                input: input,
+            },
+            { callbacks: [tracer] }
+        );
         
         console.log('response   ', response);
 
+        // Return the response back to the client
         return NextResponse.json({ output: response }, { status: 200 });
     } catch (e: any) {
         return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
