@@ -36,6 +36,7 @@ const PromptBox = ({
         <>
             <div className="flex items-center mb-4">
                 <input
+                    autoFocus
                     type="text"
                     value={prompt}
                     onChange={handlePromptChange}
