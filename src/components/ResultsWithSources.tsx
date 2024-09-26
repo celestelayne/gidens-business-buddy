@@ -52,14 +52,16 @@ const MessageItem = ({ message, pngFile }) => {
 
 const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
 
-    const messagesContainerRef = useRef();
+    console.log('chat message history', messages)
+
+    const messagesContainerRef = useRef<HTMLDivElement>(null);
     console.log(messagesContainerRef)
 
     useEffect(() => {
         if (messagesContainerRef.current) {
             const element = messagesContainerRef.current;
             console.log(element)
-        //   element.scrollTop = element.scrollHeight;
+            element.scrollTop = element.scrollHeight;
         }
     }, [messages]);
 
@@ -69,7 +71,7 @@ const ResultsWithSources = ({ messages, pngFile, maxMsgs }) => {
     return (
         <div 
             ref={messagesContainerRef}
-            className={`bg-white text-regal-blue p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[500px] max-h-[500px] flex flex-col space-y-4 ${
+            className={`bg-white text-regal-blue p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[80vh] flex flex-col space-y-4 ${
                 messages.length < maxMsgToScroll && "justify-end"
             }`}>
                 {messages && messages.map((message, index) => (

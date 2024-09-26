@@ -158,3 +158,5 @@ Now you are ready to test out the app locally! To do this, simply run `npm run d
 #### Other deployment options
 - [Netlify](https://www.netlify.com/)
 - [Vercel](https://vercel.com/)
+
+
