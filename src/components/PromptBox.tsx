@@ -2,10 +2,6 @@ import React, { ChangeEvent, KeyboardEvent } from "react";
 import { sourceCodePro } from "../styles/fonts";
 import { Icons } from "../components/Icons";
 
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-
 interface PromptBox {
     prompt: string;
     handlePromptChange: (e: ChangeEvent<HTMLInputElement>) => void;
