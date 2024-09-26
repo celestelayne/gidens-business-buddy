@@ -35,16 +35,22 @@ const PromptBox = ({
     return(
         <>
             <div className="flex items-center mb-4">
-                <input
+                <OutlinedInput
+                    sx={{ borderRadius: '2rem', width: '100%' }}
+                    id="standard-adornment"
                     autoFocus
                     type="text"
                     value={prompt}
                     onChange={handlePromptChange}
                     onKeyDown={handleKeyDown}
                     placeholder={placeHolderText || "e.g. Ask me something..."}
-                    className="w-full h-14 mr-4 py-2 px-4 bg-white text-regal-blue placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
+                    endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton aria-label="send icon" onClick={handleSubmit}>
+                            </IconButton>
+                        </InputAdornment>
+                    }
                 />
-
                 {!disableButton && (
                     <button
                         onClick={handleSubmit} // if someone clicks the button, it also activates the handle submit function 
