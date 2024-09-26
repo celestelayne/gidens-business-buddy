@@ -21,7 +21,7 @@ export default function Navbar() {
                   sizes="100vw"
                   className="block h-8 w-auto lg:hidden rounded-lg"
                   src="/gidens-fullname-logo.png"
-                  alt="gidens"
+                  alt="gidens fullname logo"
                 />
                 <Image
                   width={0}
@@ -29,7 +29,7 @@ export default function Navbar() {
                   sizes="100vw"
                   className="hidden h-8 w-auto lg:block rounded-lg"
                   src="/gidens-fullname-logo.png"
-                  alt="gidens"
+                  alt="gidens fullname logo"
                 />
               </div>
             </Link>
