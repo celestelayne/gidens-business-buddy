@@ -50,9 +50,8 @@ const PromptBox = ({
                     placeholder={placeHolderText || "e.g. Ask me something..."}
                     endAdornment={
                         <InputAdornment position="end">
-                        <IconButton aria-label="send icon" onClick={handleSubmit}>
-                            {/* <SendIcon /> */}
-                        </IconButton>
+                            <IconButton aria-label="send icon" onClick={handleSubmit}>
+                            </IconButton>
                         </InputAdornment>
                     }
                 />
