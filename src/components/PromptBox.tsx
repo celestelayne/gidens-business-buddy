@@ -41,7 +41,7 @@ const PromptBox = ({
                     value={prompt}
                     onChange={handlePromptChange}
                     onKeyDown={handleKeyDown}
-                    placeholder={placeHolderText || "e.g. Can you help me improve my LinkedIn summary?"}
+                    placeholder={placeHolderText || "e.g. Ask me something..."}
                     className="w-full h-14 mr-4 py-2 px-4 bg-white text-regal-blue placeholder-gray-500 focus:border-sky-500 rounded-xl shadow"
                 />
 
