@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
 
         // Return the response back to the client
         return NextResponse.json({ output: response }, { status: 200 });
-    } catch (e: any) {
+    } catch (e) {
         return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
     }
 };

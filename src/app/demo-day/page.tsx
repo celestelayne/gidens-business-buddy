@@ -7,11 +7,16 @@ import { Input } from "@/components/ui/input"
 
 import ResultsWithSources  from "@/components/ResultsWithSources";
 
+interface Message {
+    type: string;
+    text: string;
+}
+
 export default function DemoDay() {
 
     const [prompt, setPrompt] = useState("");
     const [error, setError] = useState(null);
-    const [messages, setMessages] = useState<any[]>([
+    const [messages, setMessages] = useState<Message[]>([
         {
             type: 'bot',
             // text: 'Hey! What is your name and favorite food?',

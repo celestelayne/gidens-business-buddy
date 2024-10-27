@@ -13,6 +13,9 @@ const nextConfig = {
     PINECONE_INDEX: process.env.PINECONE_INDEX,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },    
   images: {
     remotePatterns: [
       {

@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+import forms from '@tailwindcss/forms';
+import animate from '@tailwindcss/tailwindcss-animate';
+
 module.exports = {
     darkMode: ["class"],
     content: [
@@ -80,5 +84,5 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animate")],
+  plugins: [forms, animate],
 };

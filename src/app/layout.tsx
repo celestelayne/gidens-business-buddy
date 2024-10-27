@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
+
 // import { inter } from "@/app/ui/fonts"; 
 import localFont from 'next/font/local'
 
@@ -50,8 +51,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${monaSans.className} antialiased min-h-screen bg-regal-blue text-white`}>
-          <Navbar />
+        <body className={`${monaSans.className} antialiased min-h-screen text-black`}>
+          {/* <Navbar /> */}
           {children}
         </body>
       </html>
