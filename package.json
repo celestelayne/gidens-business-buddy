@@ -14,12 +14,23 @@
     "generate-embeddings-supabase": "node src/scripts/indexBlogPGVector.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.1",
     "@clerk/nextjs": "^5.0.10",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@headlessui/react": "^1.7.15",
+    "@langchain/anthropic": "^0.3.5",
     "@langchain/community": "^0.0.57",
     "@langchain/openai": "^0.0.31",
     "@langchain/pinecone": "^0.0.4",
+    "@mui/material": "^6.1.1",
     "@pinecone-database/pinecone": "^2.2.1",
+    "@radix-ui/react-avatar": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-separator": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.3",
     "@supabase/supabase-js": "^2.25.0",
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "20.2.5",
@@ -27,13 +38,14 @@
     "@types/react-dom": "18.2.4",
     "ai": "^2.1.3",
     "autoprefixer": "10.4.14",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.1.4",
     "eslint": "8.42.0",
     "eslint-config-next": "^14.2.3",
     "hnswlib-node": "^3.0.0",
     "langchain": "^0.1.37",
-    "lucide-react": "^0.414.0",
+    "lucide-react": "^0.453.0",
     "next": "^14.2.3",
     "pdf-parse": "^1.1.1",
     "postcss": "^8.4.38",
@@ -41,7 +53,9 @@
     "react-dom": "^18.3.1",
     "react-github-btn": "^1.4.0",
     "react-hook-form": "^7.51.4",
+    "tailwind-merge": "^2.5.4",
     "tailwindcss": "3.3.2",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "5.1.3"
   },
   "resolutions": {
@@ -57,5 +71,6 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.14"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

@@ -1,7 +1,6 @@
-import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { OpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { createClient } from "@supabase/supabase-js";
-import { OpenAI } from "langchain/llms/openai";
 import dotenv from "dotenv";
 import { VectorDBQAChain } from "langchain/chains";
 import { StreamingTextResponse, LangChainStream } from "ai";
@@ -12,11 +11,11 @@ dotenv.config({ path: `.env.local` });
 export async function POST(req: Request) {
   const { prompt } = await req.json();
 
-  const privateKey = process.env.SUPABASE_PRIVATE_KEY;
-  if (!privateKey) throw new Error(`Expected env var SUPABASE_PRIVATE_KEY`);
+  const privateKey = process.env.NEXT_PUBLIC_SUPABASE_PRIVATE_KEY;
+  if (!privateKey) throw new Error(`Expected env var NEXT_PUBLIC_SUPABASE_PRIVATE_KEY`);
 
-  const url = process.env.SUPABASE_URL;
-  if (!url) throw new Error(`Expected env var SUPABASE_URL`);
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (!url) throw new Error(`Expected env var NEXT_PUBLIC_SUPABASE_URL`);
 
   const auth = {
     detectSessionInUrl: false,

@@ -1,8 +1,10 @@
 // aloows us to import useState in NextJS
 'use client'
-import React, { useState }  from "react";
+import React, { useState, KeyboardEvent  }  from "react";
 
-import PromptBox from "@/components/PromptBox";
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
 import ResultsWithSources  from "@/components/ResultsWithSources";
 
 export default function DemoDay() {
@@ -22,7 +24,7 @@ export default function DemoDay() {
         setPrompt(e.target.value);
     }
 
-    const handleSubmitPrompt = async () => {
+    const handleSubmit = async () => {
 
         console.log("Sending prompt: ", prompt);
         
@@ -75,18 +77,45 @@ export default function DemoDay() {
             console.error(error);
             setError(error);
         }
-
     }
 
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            /* 
+                passed handle submit from the prompt box 
+                if someone hits enter, it activates the handle submit function
+            */
+            handleSubmit();
+        }
+    };
+
     return(
-        <main>
+        <div className="flex flex-1 flex-col gap-4 p-4">
             <ResultsWithSources messages={messages} pngFile="brain" maxMsgs={5}/>
-            <PromptBox
-                prompt={prompt}
-                handleSubmit={handleSubmitPrompt}
-                handlePromptChange={handlePromptChange}
-                error={error}
-            />
-        </main>
+            <>
+            <footer className="flex items-center space-x-2 p-2 border-t">
+                <Input
+                    className="flex-1 rounded-full "
+                    id="standard-adornment"
+                    autoFocus
+                    type="text"
+                    value={prompt}
+                    onChange={handlePromptChange}
+                    onKeyDown={handleKeyDown}
+                    placeholder="e.g. Ask me about food permits..."
+                />
+                {/* {!disableButton && ( */}
+                    <Button
+                        onClick={handleSubmit} // if someone clicks the button, it also activates the handle submit function 
+                        variant="outline" 
+                        size="sm"
+                    >
+                        Send
+                    </Button>
+                {/* )} */}
+            </footer>
+            <p className={`text-red-500 ${error ? "block" : "hidden"}`}>{error}</p>
+        </>
+        </div>
     )
 }
